@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties resource="mbg.properties"/>
+
+  <!-- 用于指定jdbc驱动的包地址 -->
+  <classPathEntry location="${mbg.classPathEntry}"/>
+
+  <!--generate java model and mapper xml for database practice -->
+  <context id="practice_generate" targetRuntime="MyBatis3">
+
+    <!-- 不在生成的文件中加注释 -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+
+    <jdbcConnection driverClass="${spring.datasource.service.driver-class-name}"
+                    connectionURL="${spring.datasource.service.url}"
+                    userId="${spring.datasource.service.username}"
+                    password="${spring.datasource.service.password}" >
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetProject="${mbg.project.java}" targetPackage="com.my.web.entity">
+      <property name="enableSubPackages" value="true"/>
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetProject="${mbg.project.resource}" targetPackage="mybatis.mapper">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <javaClientGenerator targetProject="${mbg.project.java}" targetPackage="com.my.web.dao.mapper"
+                         type="XMLMAPPER">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <!-- use % as wildcard -->
+    <table schema="DB2ADMIN" tableName="${mbg.tableName}">
+      <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+    </table>
+
+  </context>
+
+
+</generatorConfiguration>

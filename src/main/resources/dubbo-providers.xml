@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="my-service-biz" owner="com.leaves"/>
+    <dubbo:registry address="${dubbo.registry.address}" check="false" subscribe="false"/>
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+    
+    <dubbo:provider delay="-1" timeout="6000000"  retries="0"/> 
+
+    <dubbo:annotation package="com.my.web.service.impl" />
+
+</beans>
