@@ -29,7 +29,6 @@ public class TestServiceImpl implements TestService {
         roleExample.createCriteria().andStatusEqualTo(0).andSubsystemIdEqualTo(3L);
         roleExample.setOrderByClause("id desc");
         List<Role> list=roleDao.selectByExample(roleExample);
-        redisService.setList("role",list);
         return list;
     }
 }
